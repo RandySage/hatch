@@ -1,0 +1,16 @@
+
+from settings import *
+
+DEBUG = TEMPLATE_DEBUG = False
+DATABASES['default']['NAME'] = '/tmp/db_prod.sqlite'
+
+
+
+## Ran with (requires compatibility with django-admin on path)
+# PYTHONPATH="`pwd`" DJANGO_SETTINGS_MODULE='settings_production' django-admin $COMMAND_NAME
+#
+# E.g.,
+# PYTHONPATH="`pwd`" DJANGO_SETTINGS_MODULE='settings_production' django-admin syncdb
+# PYTHONPATH="`pwd`" DJANGO_SETTINGS_MODULE='settings_production' django-admin runserver 127.0.0.1:9013
+#
+# Confirmed that settings_production acted on /tmp/db_prod.sqlite
