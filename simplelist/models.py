@@ -4,7 +4,7 @@ from django.forms import ModelForm
 import datetime
 from django.utils import timezone
 
-class Specification(models.Model):
+class List(models.Model):
     spec_name = models.CharField(max_length=200)
     create_date = models.DateTimeField('date created')
 
@@ -20,7 +20,7 @@ class Specification(models.Model):
 class Requirement(models.Model):
     MAX_SHORT_TEXT_LENGTH = 55;
 
-    spec = models.ForeignKey(Specification)
+    spec = models.ForeignKey(List)
     heading_text = models.CharField(max_length=200, blank=True)
     body_text = models.CharField(max_length=2000, blank=True)
     doc_sort_order = models.IntegerField(default=0, null=False)
