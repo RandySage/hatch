@@ -11,26 +11,27 @@
   <header>
       <div class="authentication">
         {% if user.is_authenticated %}
-          {% browserid_logout text='Logout' %}
-        {% else %}
-          {% browserid_login text='Login' color='dark' %}
-        {% endif %}
-      </div>
-      <h1>Specification list</h1>
-    </header>
 <article>
-
-
-{% if latest_spec_list %}
-    <ul>
-    {% for spec in latest_spec_list %}
-        <li><a href="{% url 'simplelist:detail' spec.id %}">{{ spec.spec_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No specs are available.</p>
-{% endif %}
+            {% browserid_logout text='Logout' %}
+            {% if latest_spec_list %}
+               <h1>List of lists</h1>
+               <ul>
+                 {% for spec in latest_spec_list %}
+                    <li><a href="{% url 'simplelist:detail' spec.id %}">{{ spec.spec_name }}</a></li>
+                 {% endfor %}
+               </ul>
+            {% else %}
+               <p>No specs are available.</p>
+            {% endif %}
 </article>
+        {% else %}
+            {% browserid_login text='Login' color='dark' %}
+            You need to login to see available lists.
+        {% endif %}
+            </div>
+    </header>
+
+
    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     {% browserid_js %}
     </body>

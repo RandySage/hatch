@@ -1,18 +1,55 @@
+{% load browserid %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'simplelist/style.css' %}" />
 {% load render_table from django_tables2 %}
+
 <!doctype html>
 <html>
     <head>
+      {% browserid_css %}
         <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />
     </head>
     <body>
-      <h1>{{ specification.spec_name }}</h1>
+      {% browserid_info %}
 
-      {% render_table specification.requirement_set.all %}
-      <!--
-      <td>{{ requirement.heading_text }}</td>
-      <td>{{ requirement.body_text }}</td>
-      -->
+      {% if user.is_authenticated %}
+            {% browserid_logout text='Logout' %}
+
+            <h1>{{ specification.spec_name }}</h1>
+            {% render_table specification.requirement_set.all %}
+
+      {% else %}
+            {% browserid_login text='Login' color='dark' %}
+            You need to login to see available lists.
+      {% endif %}
 
     </body>
 </html>
 
+  <header>
+      <div class="authentication">
+        {% if user.is_authenticated %}
+            {% browserid_logout text='Logout' %}
+
+            {% if latest_spec_list %}
+               <h1>List of lists</h1>
+               <ul>
+                 {% for spec in latest_spec_list %}
+                    <li><a href="{% url 'simplelist:detail' spec.id %}">{{ spec.spec_name }}</a></li>
+                 {% endfor %}
+               </ul>
+            {% else %}
+               <p>No specs are available.</p>
+            {% endif %}
+        {% else %}
+            {% browserid_login text='Login' color='dark' %}
+            You need to login to see available lists.
+        {% endif %}
+            </div>
+    </header>
+<article>
+
+
+</article>
+    </body>
+</html>
