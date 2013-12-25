@@ -1,6 +1,6 @@
 {% load browserid %}
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'kind/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'simplelist/style.css' %}" />
 <html>
   <head>
     {% browserid_css %}
@@ -24,7 +24,7 @@
 {% if latest_spec_list %}
     <ul>
     {% for spec in latest_spec_list %}
-        <li><a href="{% url 'kind:detail' spec.id %}">{{ spec.spec_name }}</a></li>
+        <li><a href="{% url 'simplelist:detail' spec.id %}">{{ spec.spec_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

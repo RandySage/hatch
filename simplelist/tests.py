@@ -3,7 +3,7 @@ import datetime
 from django.utils import timezone
 from django.test import TestCase
 
-from kind.models import Specification
+from simplelist.models import Specification
 
 class SpecificationMethodTests(TestCase):
 

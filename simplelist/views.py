@@ -6,10 +6,10 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 
-from kind.models import Specification, Requirement, RequirementForm
+from simplelist.models import Specification, Requirement, RequirementForm
 
 class IndexView(generic.ListView):
-    template_name = 'kind/index.html'
+    template_name = 'simplelist/index.html'
 #    model = Specification
     context_object_name = 'latest_spec_list'
 
@@ -23,11 +23,11 @@ class IndexView(generic.ListView):
 # raises Http404 if the list is empty.
 class DetailView(generic.DetailView):
     model = Specification
-    template_name = 'kind/detail.html'
+    template_name = 'simplelist/detail.html'
 
 class ResultsView(generic.DetailView):
     model = Specification
-    template_name = 'kind/results.html'
+    template_name = 'simplelist/results.html'
 
 def form_view(request, specification_id): 
     if request.method == 'POST': # If the form has been submitted...
@@ -39,7 +39,7 @@ def form_view(request, specification_id):
     else:
         form = RequirementForm() # An unbound form
 
-    return render(request, 'kind/results.html', {
+    return render(request, 'simplelist/results.html', {
         'form': form,
     })
 
