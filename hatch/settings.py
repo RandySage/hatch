@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '-^*maq9dm$+h_5sk&=ed1ctyf6dbm65#q$qr7tyd*x87d5xfl7'
 
 # Set your site url for security
-SITE_URL = 'http://localhost:8000'
+SITE_URL = 'http://127.0.0.1:8000'
 
 # BrowserID aka Persona
 LOGIN_REDIRECT_URL = '/'
