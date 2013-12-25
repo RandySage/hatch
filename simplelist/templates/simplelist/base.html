@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load browserid %}
+{% load staticfiles %}
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'simplelist/style.css' %}" />
+  {% browserid_css %}
+  <title>{% block title %}amazing simplelist{% endblock %}</title>
+</head>
+<body>
+    <div id="sidebar">
+      {% browserid_info %}
+      {% block sidebar %}
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li>
+          {% if not user.is_authenticated %}
+             {% browserid_login text='Login' color='dark' %}
+          {% else %}
+             {% browserid_logout text='Logout' %}
+          {% endif %}
+        </li>
+
+      </ul>
+      {% endblock %}
+    </div>
+
+    <div id="content">
+        {% if not user.is_authenticated %}
+{% block content_not_logged_in %}
+               <p>You are not logged in.</p>
+{% endblock %}
+        {% else %}
+<article>
+            {% if latest_spec_list %}
+{% block content_logged_in %}
+               <h1>List of lists</h1>
+               <ul>
+                 {% for spec in latest_spec_list %}
+                    <li><a href="{% url 'simplelist:detail' spec.id %}">{{ spec.spec_name }}</a></li>
+                 {% endfor %}
+               </ul>
+{% endblock %}
+            {% else %}
+oops
+            {% endif %}
+</article>
+        {% endif %}
+    </div>
+
+
+
+
+  <header>
+      <div class="authentication">
+            </div>
+    </header>
+
+
+   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    {% browserid_js %}
+    </body>
+</html>
