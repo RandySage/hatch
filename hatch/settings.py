@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'simplelist',
     'django_extensions', # Added for show_urls
     'django_tables2',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
