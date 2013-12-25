@@ -1,0 +1,18 @@
+{% load render_table from django_tables2 %}
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />
+    </head>
+    <body>
+      <h1>{{ specification.spec_name }}</h1>
+
+      {% render_table specification.requirement_set.all %}
+      <!--
+      <td>{{ requirement.heading_text }}</td>
+      <td>{{ requirement.body_text }}</td>
+      -->
+
+    </body>
+</html>
+

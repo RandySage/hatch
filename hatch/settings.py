@@ -41,11 +41,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
-#    'django_browserid',  # Load after auth
+    'django_browserid',  # Load after auth
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'simplelist',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,7 +59,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-#    'django_browserid.context_processors.browserid',
+    'django_browserid.context_processors.browserid',
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
@@ -71,7 +72,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 AUTHENTICATION_BACKENDS = (
    'django.contrib.auth.backends.ModelBackend', # required for admin
-#   'django_browserid.auth.BrowserIDBackend',
+   'django_browserid.auth.BrowserIDBackend',
 )
 
 ROOT_URLCONF = 'hatch.urls'
