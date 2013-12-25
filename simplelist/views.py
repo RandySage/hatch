@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 
-from simplelist.models import List, Requirement, RequirementForm
+from simplelist.models import List, Entry, EntryForm
 
 class IndexView(generic.ListView):
     template_name = 'simplelist/index.html'
@@ -31,13 +31,13 @@ class ResultsView(generic.DetailView):
 
 def form_view(request, list_id): 
     if request.method == 'POST': # If the form has been submitted...
-        form = RequirementForm(request.POST) # A form bound to the POST data
+        form = EntryForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
             return HttpResponseRedirect('/thanks/') # Redirect after POST
     else:
-        form = RequirementForm() # An unbound form
+        form = EntryForm() # An unbound form
 
     return render(request, 'simplelist/results.html', {
         'form': form,

@@ -17,7 +17,7 @@ class List(models.Model):
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.spec_name
 
-class Requirement(models.Model):
+class Entry(models.Model):
     MAX_SHORT_TEXT_LENGTH = 55;
 
     spec = models.ForeignKey(List)
@@ -26,16 +26,16 @@ class Requirement(models.Model):
     doc_sort_order = models.IntegerField(default=0, null=False)
     def short_text(self):
         if len(self.heading_text):
-            return "H: "+self.heading_text[0:Requirement.MAX_SHORT_TEXT_LENGTH];
+            return "H: "+self.heading_text[0:Entry.MAX_SHORT_TEXT_LENGTH];
         else:
-            return "B: "+self.body_text[0:Requirement.MAX_SHORT_TEXT_LENGTH];
+            return "B: "+self.body_text[0:Entry.MAX_SHORT_TEXT_LENGTH];
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.short_text();
 
-class RequirementForm(ModelForm):
+class EntryForm(ModelForm):
     class Meta:
-        model = Requirement
+        model = Entry
         fields = '__all__'
         #fields = ['heading_text', 'body_text']
         # See also https://docs.djangoproject.com/en/1.6/topics/forms/modelforms/
