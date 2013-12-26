@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+import django_tables2
 
 import datetime
 from django.utils import timezone
@@ -31,10 +32,12 @@ class Entry(models.Model):
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.short_text();
 
-class EntryForm(ModelForm):
+# Attempting to follow http://stackoverflow.com/a/11931849/527489
+
+class EntryTable(django_tables2.Table):
+    #actions = EntryActions(orderable=False)
     class Meta:
         model = Entry
-        fields = '__all__'
-        #fields = ['heading_text', 'body_text']
-        # See also https://docs.djangoproject.com/en/1.6/topics/forms/modelforms/
+        exclude = ('id',)
+        attrs = {"class": "paleblue"}
 

@@ -4,12 +4,13 @@
 <link rel="stylesheet" type="text/css" href="{% static 'simplelist/style.css' %}" />
 
   {% block custom_head_content %}  
-        <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />{% load render_table from django_tables2 %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />
+        {% load render_table from django_tables2 %}
   {% endblock %}
 
-{% block title %}List detail view{% endblock %}
+{% block title %}  List detail view   {% endblock %}
 
 {% block content_logged_in %}
-   <h1>{{ list.list_name }}</h1>
-   {% render_table list.entry_set.all %}
+   <h1>{{ list_name }}</h1>
+   {% render_table table %}
 {% endblock %}

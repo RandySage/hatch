@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 
-from simplelist.models import List, Entry, EntryForm
+from simplelist.models import List, Entry, EntryTable
 
 class IndexView(generic.ListView):
     template_name = 'simplelist/index.html'
@@ -21,27 +21,10 @@ class IndexView(generic.ListView):
 # Note: There's also a get_list_or_404() function, which works just as
 # get_object_or_404() – except using filter() instead of get(). It 
 # raises Http404 if the list is empty.
-class DetailView(generic.DetailView):
-    model = List
-    template_name = 'simplelist/detail.html'
+def detail(request, list_id):
+    list = get_object_or_404(List, pk=list_id)
+    entry_list = list.entry_set.all()
+    table = EntryTable(entry_list)
+    return render(request, "simplelist/detail.html", {"list_name": list.list_name, "table": table})
+    #template_name = 'simplelist/detail.html'
 
-class ResultsView(generic.DetailView):
-    model = List
-    template_name = 'simplelist/results.html'
-
-def form_view(request, list_id): 
-    if request.method == 'POST': # If the form has been submitted...
-        form = EntryForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
-            # Process the data in form.cleaned_data
-            # ...
-            return HttpResponseRedirect('/thanks/') # Redirect after POST
-    else:
-        form = EntryForm() # An unbound form
-
-    return render(request, 'simplelist/results.html', {
-        'form': form,
-    })
-
-def vote(request, list_id): 
-    return HttpResponse("You're voting on list %s." % list_id)
