@@ -17,17 +17,17 @@ class Entry(models.Model):
     MAX_SHORT_TEXT_LENGTH = 55;
 
     ## TODO - rename each of the following to its 'verbose' name
-    doc_sort_order = models.IntegerField(default=0, null=False, verbose_name='Sort')
-    heading_text = models.CharField(max_length=200, blank=True, verbose_name='Concept')
-    body_text = models.CharField(max_length=2000, blank=True, verbose_name='Description')
+    sort = models.IntegerField(default=0, null=False)
+    concept = models.CharField(max_length=200, blank=True)
+    description = models.CharField(max_length=2000, blank=True)
     create_date = models.DateTimeField('date created')
-    created_by = models.ForeignKey(User)
+    creator = models.ForeignKey(User)
     list = models.ForeignKey(List)
     def short_text(self):
-        if len(self.heading_text):
-            return "H: "+self.heading_text[0:Entry.MAX_SHORT_TEXT_LENGTH];
+        if len(self.concept):
+            return "H: "+self.concept[0:Entry.MAX_SHORT_TEXT_LENGTH];
         else:
-            return "B: "+self.body_text[0:Entry.MAX_SHORT_TEXT_LENGTH];
+            return "B: "+self.description[0:Entry.MAX_SHORT_TEXT_LENGTH];
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.short_text();

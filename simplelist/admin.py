@@ -13,7 +13,7 @@ class ListAdmin(admin.ModelAdmin):
 
 class EntryAdmin(admin.ModelAdmin):
     exclude = ('created_by','create_date',)
-    #fields = ('list', 'heading_text', 'body_text', 'doc_sort_order',)
+    #fields = ('list', 'concept', 'body_text', 'doc_sort_order',)
 
     def save_model(self, request, obj, form, change):
         obj.created_by = request.user
