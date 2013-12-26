@@ -3,14 +3,14 @@ import datetime
 from django.utils import timezone
 from django.test import TestCase
 
-from simplelist.models import Collection
+from simplelist.models import List
 
-class CollectionMethodTests(TestCase):
+class ListMethodTests(TestCase):
 
-    def test_was_created_recently_with_future_collection(self):
+    def test_was_created_recently_with_future_list(self):
         """
-        was_created_recently() should return False for collections whose
+        was_created_recently() should return False for lists whose
         create_date is in the future
         """
-        future_collection = Collection(create_date=timezone.now() + datetime.timedelta(days=30))
-        self.assertEqual(future_collection.was_created_recently(), False)
+        future_list = List(create_date=timezone.now() + datetime.timedelta(days=30))
+        self.assertEqual(future_list.was_created_recently(), False)

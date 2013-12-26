@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 import datetime
 from django.utils import timezone
 
-class Collection(models.Model):
-    collection_name = models.CharField(max_length=200)
+class List(models.Model):
+    list_name = models.CharField(max_length=200)
     create_date = models.DateTimeField('date created')
     created_by = models.ForeignKey(User)
     # This function is maintained only as a template for later functions
@@ -16,7 +16,7 @@ class Collection(models.Model):
 class Entry(models.Model):
     MAX_SHORT_TEXT_LENGTH = 55;
 
-    collection = models.ForeignKey(Collection)
+    list = models.ForeignKey(List)
     create_date = models.DateTimeField('date created')
     created_by = models.ForeignKey(User)
     heading_text = models.CharField(max_length=200, blank=True)
