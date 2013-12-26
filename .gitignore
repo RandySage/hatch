@@ -1,4 +1,9 @@
 venv
 *.pyc
 
+static
+media
+logs
+db.sqlite3
+
 settings_production.py
