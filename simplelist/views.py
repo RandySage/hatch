@@ -28,6 +28,15 @@ def list_detail(request, list_id):
     return render(request, "simplelist/list_detail.html", {"list_name": list.list_name, "table": table})
     #template_name = 'simplelist/list_detail.html'
 
-class EntryDetailView(generic.DetailView):
-    model = Entry
+def entry_detail(request, entry_id):
+    entry = get_object_or_404(Entry, pk=entry_id)
+    return render(request, "simplelist/entry_detail.html", {"entry": entry})
+
+class EntryListView(generic.ListView):
     template_name = 'simplelist/entry_detail.html'
+    model = Entry
+    context_object_name = 'entry'
+
+    def get_queryset(self):
+        """Return the lists."""
+        return Entry.objects.get(pk=1)

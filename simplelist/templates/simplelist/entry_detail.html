@@ -1,11 +1,14 @@
 {% extends "simplelist/base.html" %}
+{% load inplace_edit %}
 
 {% load staticfiles %}
+  {% block custom_head_content %} 
 <link rel="stylesheet" type="text/css" href="{% static 'simplelist/style.css' %}" />
+   {% endblock %}
 
 {% block title %}  {{ entry.concept }}  {% endblock %}
 
 {% block content_logged_in %}
-<h2> {{ entry.concept }} </h2>
-<p> {{ entry.description }} </p>
+<h2> {% inplace_edit  "entry.concept" %} </h2>
+<p> {% inplace_edit  "entry.description" %} </p>
 {% endblock %}
