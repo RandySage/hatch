@@ -10,6 +10,6 @@
 {% block title %}List detail view{% endblock %}
 
 {% block content_logged_in %}
-   <h1>{{ list.spec_name }}</h1>
+   <h1>{{ list.list_name }}</h1>
    {% render_table list.entry_set.all %}
 {% endblock %}

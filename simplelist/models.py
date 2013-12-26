@@ -11,7 +11,7 @@ class List(models.Model):
     created_by = models.ForeignKey(User)
     # This function is maintained only as a template for later functions
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.spec_name
+        return self.list_name
 
 class Entry(models.Model):
     MAX_SHORT_TEXT_LENGTH = 55;

@@ -11,7 +11,7 @@ from simplelist.models import List, Entry, EntryForm
 class IndexView(generic.ListView):
     template_name = 'simplelist/index.html'
 #    model = List
-    context_object_name = 'latest_spec_list'
+    context_object_name = 'list_of_lists'
 
     def get_queryset(self):
         """Return the lists."""
