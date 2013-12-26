@@ -1,0 +1,11 @@
+{% extends "simplelist/base.html" %}
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'simplelist/style.css' %}" />
+
+{% block title %}  {{ entry.heading_text }}  {% endblock %}
+
+{% block content_logged_in %}
+<h2> {{ entry.heading_text }} </h2>
+<p> {{ entry.body_text }} </p>
+{% endblock %}

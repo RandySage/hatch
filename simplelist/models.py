@@ -1,7 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-import django_tables2
 
 import datetime
 from django.utils import timezone
@@ -32,10 +31,26 @@ class Entry(models.Model):
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.short_text();
 
-# Attempting to follow http://stackoverflow.com/a/11931849/527489
 
-class EntryTable(django_tables2.Table):
-    #actions = EntryActions(orderable=False)
+## TODO: move this to a tables.py
+
+# # Attempting to follow http://django-tables2.readthedocs.org/en/latest/
+# import django_tables2 as tables
+# from django_tables2.utils import A  # alias for Accessor
+# class EntryTable(tables.Table):
+#     name = tables.LinkColumn('simplelist.entry_detail', args=[A('pk')])
+#     class Meta:
+#         model = Entry
+#         #exclude = ('id',)
+#         attrs = {"class": "paleblue"}
+
+# Attempting to follow http://stackoverflow.com/a/11931849/527489
+import django_tables2 as tables
+class EntryTable(tables.Table):
+    link = tables.TemplateColumn(template_name='simplelist/entry_detail_link.html')
+    # View = tables.TemplateColumn(verbose_name=_('Details'),
+    #                              template_name='simplelist/entry_detail_link.html',
+    #                              sortable=False)
     class Meta:
         model = Entry
         exclude = ('id',)
