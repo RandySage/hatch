@@ -12,5 +12,5 @@ urlpatterns = patterns('',
 
     url(r'^list/', include('simplelist.urls', namespace='simplelist')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include('simplelist.urls', namespace='simplelist')),
+    url(r'^', include('simplelist.urls', namespace='simplelist')),
 )

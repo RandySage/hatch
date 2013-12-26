@@ -17,12 +17,12 @@ class List(models.Model):
 class Entry(models.Model):
     MAX_SHORT_TEXT_LENGTH = 55;
 
-    list = models.ForeignKey(List)
-    create_date = models.DateTimeField('date created')
-    created_by = models.ForeignKey(User)
+    doc_sort_order = models.IntegerField(default=0, null=False)
     heading_text = models.CharField(max_length=200, blank=True)
     body_text = models.CharField(max_length=2000, blank=True)
-    doc_sort_order = models.IntegerField(default=0, null=False)
+    create_date = models.DateTimeField('date created')
+    created_by = models.ForeignKey(User)
+    list = models.ForeignKey(List)
     def short_text(self):
         if len(self.heading_text):
             return "H: "+self.heading_text[0:Entry.MAX_SHORT_TEXT_LENGTH];

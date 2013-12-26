@@ -8,7 +8,7 @@
          <h1>List of lists</h1>
          <ul>
            {% for list in list_of_lists %}
-           <li><a href="{% url 'simplelist:detail' list.id %}">{{ list.list_name }}</a></li>
+           <li><a href="{% url 'simplelist:list_detail' list.id %}">{{ list.list_name }}</a></li>
            {% endfor %}
          </ul>
       {% else %}
