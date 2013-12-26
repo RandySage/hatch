@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the lists."""
-        return List.objects.order_by('-create_date')[:]
+        return List.objects.order_by('create_date')[:]
 
 
 # Note: There's also a get_list_or_404() function, which works just as
