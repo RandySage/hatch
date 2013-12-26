@@ -12,11 +12,11 @@ class ListAdmin(admin.ModelAdmin):
 
 
 class EntryAdmin(admin.ModelAdmin):
-    exclude = ('created_by','create_date',)
+    exclude = ('creator','create_date',)
     #fields = ('list', 'concept', 'body_text', 'doc_sort_order',)
 
     def save_model(self, request, obj, form, change):
-        obj.created_by = request.user
+        obj.creator = request.user
         obj.create_date = timezone.now()
         obj.save()
 

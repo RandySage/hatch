@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
 {% load browserid %}
+{% load inplace_edit %}
 {% load staticfiles %}
+<html lang="en">
 <head>
   <link rel="stylesheet" type="text/css" href="{% static 'simplelist/style.css' %}" />
   {% browserid_css %}
+  {% inplace_css 1 %}
   {% block custom_head_content %}    {% endblock %}
   <title>{% block title %}amazing simplelist{% endblock %}</title>
 </head>
@@ -40,6 +42,7 @@
     </div>
 
    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    {% browserid_js %}
+   {% inplace_js 1 1 %}
+   {% browserid_js %}
     </body>
 </html>

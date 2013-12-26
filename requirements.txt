@@ -3,3 +3,4 @@ django_extensions
 django-tables2
 django-browserid
 South
+django-inplaceedit

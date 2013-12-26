@@ -5,6 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^browserid/', include('django_browserid.urls')),
+    url(r'^inplaceeditform/', include('inplaceeditform.urls')),
 
     # Examples:
     # url(r'^$', 'hatch.views.home', name='home'),
