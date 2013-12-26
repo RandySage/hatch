@@ -16,9 +16,10 @@ class List(models.Model):
 class Entry(models.Model):
     MAX_SHORT_TEXT_LENGTH = 55;
 
-    doc_sort_order = models.IntegerField(default=0, null=False)
-    heading_text = models.CharField(max_length=200, blank=True)
-    body_text = models.CharField(max_length=2000, blank=True)
+    ## TODO - rename each of the following to its 'verbose' name
+    doc_sort_order = models.IntegerField(default=0, null=False, verbose_name='Sort')
+    heading_text = models.CharField(max_length=200, blank=True, verbose_name='Concept')
+    body_text = models.CharField(max_length=2000, blank=True, verbose_name='Description')
     create_date = models.DateTimeField('date created')
     created_by = models.ForeignKey(User)
     list = models.ForeignKey(List)
@@ -47,12 +48,12 @@ class Entry(models.Model):
 # Attempting to follow http://stackoverflow.com/a/11931849/527489
 import django_tables2 as tables
 class EntryTable(tables.Table):
-    link = tables.TemplateColumn(template_name='simplelist/entry_detail_link.html')
+    DetailsLink = tables.TemplateColumn(template_name='simplelist/entry_detail_link.html')
     # View = tables.TemplateColumn(verbose_name=_('Details'),
     #                              template_name='simplelist/entry_detail_link.html',
     #                              sortable=False)
     class Meta:
         model = Entry
-        exclude = ('id',)
+        exclude = ('id','list',)
         attrs = {"class": "paleblue"}
 
