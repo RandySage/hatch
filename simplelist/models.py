@@ -48,12 +48,17 @@ class Entry(models.Model):
 # Attempting to follow http://stackoverflow.com/a/11931849/527489
 import django_tables2 as tables
 class EntryTable(tables.Table):
-    DetailsLink = tables.TemplateColumn(template_name='simplelist/entry_detail_link.html')
+    concept_link = tables.TemplateColumn(template_name='simplelist/entry_detail_link.html')
     # View = tables.TemplateColumn(verbose_name=_('Details'),
     #                              template_name='simplelist/entry_detail_link.html',
     #                              sortable=False)
     class Meta:
         model = Entry
-        exclude = ('id','list',)
-        attrs = {"class": "paleblue"}
+        exclude = ('id','list','concept')
+        attrs = {'class': 'paleblue'}
+        sequence = ('sort', 
+                    'concept_link',
+                    'create_date',
+                    'creator',
+                    )
 
