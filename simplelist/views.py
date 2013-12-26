@@ -6,30 +6,30 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 
-from simplelist.models import List, Entry, EntryForm
+from simplelist.models import Collection, Entry, EntryForm
 
-class IndexView(generic.ListView):
+class IndexView(generic.CollectionView):
     template_name = 'simplelist/index.html'
-#    model = List
-    context_object_name = 'latest_spec_list'
+#    model = Collection
+    context_object_name = 'collection_list'
 
     def get_queryset(self):
-        """Return the lists."""
-        return List.objects.order_by('-create_date')[:]
+        """Return the collections."""
+        return Collection.objects.order_by('-create_date')[:]
 
 
-# Note: There's also a get_list_or_404() function, which works just as
+# Note: There's also a get_collection_or_404() function, which works just as
 # get_object_or_404() – except using filter() instead of get(). It 
-# raises Http404 if the list is empty.
+# raises Http404 if the collection is empty.
 class DetailView(generic.DetailView):
-    model = List
+    model = Collection
     template_name = 'simplelist/detail.html'
 
 class ResultsView(generic.DetailView):
-    model = List
+    model = Collection
     template_name = 'simplelist/results.html'
 
-def form_view(request, list_id): 
+def form_view(request, collection_id): 
     if request.method == 'POST': # If the form has been submitted...
         form = EntryForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
@@ -43,5 +43,5 @@ def form_view(request, list_id):
         'form': form,
     })
 
-def vote(request, list_id): 
-    return HttpResponse("You're voting on list %s." % list_id)
+def vote(request, collection_id): 
+    return HttpResponse("You're voting on collection %s." % collection_id)
