@@ -63,7 +63,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django_browserid.context_processors.browserid',
+#    'django_browserid.context_processors.browserid',
     'django.core.context_processors.request',
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
